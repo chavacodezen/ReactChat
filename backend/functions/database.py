@@ -11,7 +11,7 @@ def get_recent_messages():
     }
 
     # Initialize messages
-    messages = {}
+    messages = []
 
     # Add a random element
     x = random.uniform(0, 1)
@@ -42,3 +42,13 @@ def get_recent_messages():
 
     # Return
     return messages
+
+# Store Messages
+def store_messages():
+    # Define the file name
+    file_name = "stored_data.json"
+
+    # Get recent messages
+    messages = get_recent_messages()[1:]
+
+    

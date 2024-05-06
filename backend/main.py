@@ -6,7 +6,7 @@ from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from decouple import config
 import openai
-from functions.openai_requests import convert_audio_to_text
+from functions.openai_requests import convert_audio_to_text, get_chat_response
 
 app = FastAPI()
 
@@ -43,7 +43,16 @@ async def get_audio():
     message_decoded = convert_audio_to_text(audio_input)
 
     print(message_decoded)
-    return message_decoded
+
+    # Guard: Ensure message decoded
+    if not message_decoded:
+        return HTTPException(status_code=400, detail="Failed to decode audio")
+    
+    # Get chat response
+    chat_response = get_chat_response(message_decoded)
+
+    print(chat_response)
+    return chat_response
 
 # Post Bot Response
 # Note: Not playing in browser when using post request
