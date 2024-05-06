@@ -1,0 +1,22 @@
+VS EXTENSIONS:
+Auto Close Tag
+Auto Rename Tag
+ES7+ React/Redux/React-Native snippets
+Prettier - Code formatter
+Python
+isort
+Pylance
+Tailwind CSS IntelliSense
+
+INSTALL COMMANDS:
+python -m venv venv
+source venv/Scripts/activate
+pip3 install openai==0.27.0
+python.exe -m pip install --upgrade pip
+pip3 install python-decouple==3.8 python-multipart==0.0.6 requests==2.28.2 fastapi==0.92.0
+pip3 install "uvicorn[standard]"
+npx tailwindcss init -p
+
+EXECUTE BACKEND ENVIRONMENT:
+uvicorn main:app --reload
+yarn dev
