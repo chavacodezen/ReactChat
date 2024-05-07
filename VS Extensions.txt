@@ -18,5 +18,8 @@ pip3 install "uvicorn[standard]"
 npx tailwindcss init -p
 
 EXECUTE BACKEND ENVIRONMENT:
+# If not initiated (venv): source venv/Scripts/activate
 uvicorn main:app --reload
+
+EXECUTE FRONTEND ENVIRONMENT:
 yarn dev
