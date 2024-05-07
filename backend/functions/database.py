@@ -7,7 +7,7 @@ def get_recent_messages():
     file_name = "stored_data.json"
     learn_instruction = {
         "role": "system",
-        "content": "You are interviewing the user for a job as a retail assistant. Ask short questions that are relevant to the junior position. Your name is Caitlyn. The user name is Bryan. Keep your answers under 30 words."
+        "content": "You are interviewing the user for a job as a retail assistant. Ask short questions that are relevant to the junior position. Your name is Rachel. The user name is Bryan. Keep your answers under 30 words."
     }
 
     # Initialize messages
@@ -18,7 +18,7 @@ def get_recent_messages():
     if x < 0.5:
         learn_instruction["content"] = learn_instruction["content"] + " Your response will include some light humor."
     else:
-        learn_instruction["content"] = learn_instruction["content"] + " Your response will include some dark humor."
+        learn_instruction["content"] = learn_instruction["content"]
 
     # Append instruction to message
     messages.append(learn_instruction)

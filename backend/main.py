@@ -8,6 +8,7 @@ from decouple import config
 import openai
 from functions.database import store_messages, reset_messages
 from functions.openai_requests import convert_audio_to_text, get_chat_response
+from functions.text_to_speech import convert_text_to_speech
 
 app = FastAPI()
 
@@ -40,15 +41,21 @@ async def reset_conversation():
     reset_messages()
     return {"message": "Conversation reset"}
 
-# GET Audio
-@app.get("/post-audio-get")
-async def get_audio():
+# Post Bot Response
+# Note: Not playing in browser when using post request
+@app.post("/post-audio/")
+async def post_audio(file: UploadFile = File(...)):
     # Get saved audio
-    audio_input = open("voice.mp3", "rb")
+    # audio_input = open("voice.mp3", "rb")
+
+    # Save file from frontend
+    with open(file.filename, "wb") as buffer:
+        buffer.write(file.file.read())
+
+    audio_input = open(file.filename, "rb")
 
     # Decode audio
     message_decoded = convert_audio_to_text(audio_input)
-
     print(message_decoded)
 
     # Guard: Ensure message decoded
@@ -57,12 +64,28 @@ async def get_audio():
     
     # Get chat response
     chat_response = get_chat_response(message_decoded)
+    print(chat_response)
+
+    # Guard: Ensure we got response
+    if not chat_response:
+        return HTTPException(status_code=400, detail="Failed to get OpenAI chat response")
 
     # Store messages
     store_messages(message_decoded, chat_response)
 
-    print(chat_response)
-    return chat_response
+    # Convert chat response to audio
+    audio_output = convert_text_to_speech(chat_response)
+
+    # Guard: Ensure we got audio
+    if not audio_output:
+        return HTTPException(status_code=400, detail="Failed to get Eleven Labs audio response")
+
+    # Create a generator that yields chunks of data
+    def iterfile():
+        yield audio_output
+
+    # Use for Post: Return output audio
+    return StreamingResponse(iterfile(), media_type="application/octet-stream")
 
 # Post Bot Response
 # Note: Not playing in browser when using post request
