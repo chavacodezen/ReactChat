@@ -27,7 +27,7 @@ function Title({setMessages}: Props) {
     }
 
     return (
-        <div className='flex justify-between items-center w-full p-4 bg-gray-900 text-white shadow'>
+        <div className='flex justify-between items-center w-full p-4 bg-primary text-white shadow'>
             <div className="flex items-center gap-2">
                 <a
                     href="https://bryan-chavarria.netlify.app/"
@@ -40,7 +40,7 @@ function Title({setMessages}: Props) {
                         <p className="text-white text-[-18px] font-bold cursor-pointer">
                             Bryan Chavarria
                         </p>
-                        <span className="text-secondary font-light flex-shrink-0">
+                        <span className="text-secondary font-medium flex-shrink-0">
                             Computer Science Engineer
                         </span>
                     </div>

@@ -60,7 +60,7 @@ const Controller = () => {
     return(
         <div className='h-screen overflow-y-hidden'>
             <Title setMessages={setMessages} />
-            <div className='flex flex-col justify-between h-full overflow-y-scroll pb-96'>
+            <div className='flex flex-col justify-between h-full overflow-y-scroll pb-96' style={{ backgroundImage: 'url("/src/assets/bg-image.png")' }}>
                 {/* Conversation */}
                 <div className="mt-5 px-5">
                     {messages.map((audio, index) => {
@@ -71,7 +71,7 @@ const Controller = () => {
                             >
                                 {/* Sender */}
                                 <div className="mt-4">
-                                    <p className={audio.sender == "rachel" ? "text-right mr-2 text-green-500": "ml-2 italic text-blue-500"}>
+                                    <p className={audio.sender == "rachel" ? "text-right mr-2 text-green-500": "ml-2 italic text-red-500"}>
                                         {audio.sender}
                                     </p>
                                     {/* Audio Message */}
@@ -82,19 +82,19 @@ const Controller = () => {
                     })}
 
                     {messages.length == 0 && !isLoading && (
-                        <div className="text-center font-light italic mt-10"> 
+                        <div className="text-center font-light italic text-white mt-10"> 
                             Send a message to Rachel.
                         </div>
                     )}
 
                     {isLoading && (
-                        <div className="text-center font-light italic mt-10 animate-pulse"> 
+                        <div className="text-center font-light italic text-white mt-10 animate-pulse"> 
                             Give me a few seconds please...
                         </div>
                     )}
                 </div>
                 {/* Recorder */}
-                <div className='fixed bottom-0 w-full py-6 border-t text-center bg-gradient-to-r from-sky-500 to-green-500'>
+                <div className='fixed bottom-0 w-full py-6 border-t text-center bg-gradient-to-l from-sky-500 to-primary'>
                     <div className='flex justify-center items-center w-full'>
                         <RecordMessage handleStop={handleStop} />
                     </div>
