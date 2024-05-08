@@ -60,7 +60,7 @@ const Controller = () => {
     return(
         <div className='h-screen overflow-y-hidden'>
             <Title setMessages={setMessages} />
-            <div className='flex flex-col justify-between h-full overflow-y-scroll pb-96' style={{ backgroundImage: 'url("/src/assets/bg-image.png")' }}>
+            <div className='flex flex-col justify-between h-full overflow-y-scroll pb-96 bg-hero-pattern'>
                 {/* Conversation */}
                 <div className="mt-5 px-5">
                     {messages.map((audio, index) => {
