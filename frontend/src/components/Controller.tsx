@@ -60,7 +60,7 @@ const Controller = () => {
     return(
         <div className='h-screen overflow-y-hidden'>
             <Title setMessages={setMessages} />
-            <div className='flex flex-col justify-between h-full overflow-y-scroll pb-96 bg-hero-pattern'>
+            <div className='flex flex-col justify-between h-full overflow-y-scroll pb-96'>
                 {/* Conversation */}
                 <div className="mt-5 px-5">
                     {messages.map((audio, index) => {
@@ -94,7 +94,7 @@ const Controller = () => {
                     )}
                 </div>
                 {/* Recorder */}
-                <div className='fixed bottom-0 w-full py-6 border-t text-center bg-gradient-to-l from-sky-500 to-primary'>
+                <div className='fixed bottom-0 w-full py-5 border-t text-center bg-gradient-to-r from-[#915EFF] to-sky-300'>
                     <div className='flex justify-center items-center w-full'>
                         <RecordMessage handleStop={handleStop} />
                     </div>
